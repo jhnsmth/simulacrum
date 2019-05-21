@@ -115,16 +115,8 @@ lazy val commonSettings = Seq(
   ),
   wartremoverErrors in (Test, compile) ++= Seq(
     Wart.ExplicitImplicitTypes,
-    Wart.ImplicitConversion),
-  // Disable scaladoc on 2.13 until RC1 due to https://github.com/scala/bug/issues/11045
-  sources in (Test, doc) := {
-    CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, v)) if v >= 13 =>
-        Nil
-      case _ =>
-        (sources in (Test, doc)).value
-    }
-  }
+    Wart.ImplicitConversion
+  )
 )
 
 lazy val root = project.in(file("."))
